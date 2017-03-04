@@ -1,0 +1,4 @@
+$('#report').hide()
+<%= if @job.complete? %>
+$('#complete').appendTo('#finished');
+<% end  %>

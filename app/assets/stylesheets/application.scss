@@ -9,10 +9,9 @@
  * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
  */
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
 
 body {
   margin: 0;
@@ -55,10 +54,26 @@ body {
   padding: 15px;
 }
 
-.image {
-  align-content: center;
-}
-
 .page-title {
   color: #f7b50c;
+}
+
+.titre {
+  text-align: center;
+}
+
+#image {
+  width: 300px;
+  height: 200px;
+}
+
+#site_info {
+  border: 1px solid #ddd;
+  width: 300px;
+  height: auto;
+}
+
+.side_images {
+  width: 300px;
+  height: 400;
 }

@@ -2,6 +2,8 @@ class JobsController < ApplicationController
 
   def index
     @jobs = Job.all
+    @available_jobs = Job.where(pending: false)
+    @taken_jobs = Job.where(pending: true)
   end
 
   def new
@@ -15,19 +17,22 @@ class JobsController < ApplicationController
 
   def create
     @job = Job.new(job_params)
-    if @job.save
+    if @job.save(pending: false)
       redirect_to jobs_path
     else
       render :new
     end
   end
 
+
   def update
     @job = Job.find(params[:id])
     if current_worker
       if @job.update(pending: true, worker_id: current_worker.id)
-        redirect_to worker_path(current_worker)
-        flash[:notice] = "You've successfully claimed this job."
+        respond_to do |format|
+          format.html {redirect_to worker_path(current_worker)}
+          format.js
+        end
       else
         render :show
         flash[:notice] = "Something went wrong!"

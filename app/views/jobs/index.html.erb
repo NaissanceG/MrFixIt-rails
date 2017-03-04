@@ -1,7 +1,38 @@
-<h1>Jobs</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h1>Available Jobs</h1>
+      <ul>
+        <% @available_jobs.each  do |job| %>
+        <li id="info-job"><%= link_to job.title, job_path(job)   %>
+        <%= link_to "Claim It Now", job_path(job), id: "job-now", remote: true, :method => "patch" %></li>
+        <% end %>
+      </ul>
+    </div>
 
-<ul>
-  <% @jobs.each do |job| %>
-  <li><%= link_to job.title, job_path(job) %></li>
-  <% end %>
-</ul>
+    <div class="col-md-6">
+      <h1>Pending Jobs</h1>
+      <p>The following jobs are currently pending</p>
+      <ul>
+        <% @taken_jobs.each  do |job| %>
+        <li id="more-jobs"><%= link_to job.title, job_path(job) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<hr>
+  <div class="row">
+    <div class="col-md-6">
+      <h1>All Jobs</h1>
+      <ul>
+        <% @jobs.each  do |job| %>
+        <li><%= link_to job.title, job_path(job) %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <h1>Completed Jobs</h1>
+    </div>
+
+  </div>
+</div>

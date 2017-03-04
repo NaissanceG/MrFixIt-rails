@@ -1,7 +1,25 @@
 <h1><%= current_worker.email %>'s claimed jobs:</h1>
 
-<ul>
-<% current_worker.jobs.each do |job| %>
-<li><%= link_to job.title, job_path(job) %></li>
-<% end %>
-</ul>
+<div class="row">
+  <div class="col-md-6">
+    <h1>Pending Jobs</h1>
+    <ul>
+      <% current_worker.jobs.each do |job| %>
+      <li id="report"><%= link_to job.title, job_path(job), remote: true %>
+        <%= check_box_tag 'complete', false %><%= label :complete, 'Done?'%>
+        <%= check_box_tag 'active', false %><%= label :active, 'Status?' %>
+        <%= check_box_tag 'cancel', false  %><%= label :cancel, 'Sorry, Nevermind?'%></li><br>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="col-md-3">
+    <h1>Active</h1>
+    <ul class="working"></ul>
+  </div>
+
+  <div class="col-md-3">
+    <h1>Completed</h1>
+    <ul id="finished"></ul>
+  </div>
+</div>

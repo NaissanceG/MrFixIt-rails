@@ -1,11 +1,37 @@
-<h2>Welcome to Mr. Fix-It!</h2>
+<h2 class="titre">Welcome to Mr. Fix-It!</h2>
 
-<p>Mr. Fix-It is the one-stop-shop to crowd-source all your home repair needs. Need a fence repaired? Cabinets installed? Leaky pipe mended? Post the job on Mr.Fix-It. Then, independent handypeople, carpenters, plumbers, and more are able to view and claim jobs. It's like ride-sharing, but for home repairs!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+      <%= image_tag("handyperson.jpeg", :id => "image") %>
+    </div>
+    <div class="col-md-4">
+    </div>
+  </div>
 
-<div class="image">
-<%= image_tag("handyperson.jpeg") %>
+<div class="row">
+  <div class="col-md-4" >
+    <%= image_tag("asian-image.jpeg", :id => "image") %>
+  </div>
+  <div class="col-md-4">
+    <p id="site_info">Mr. Fix-It is the one-stop-shop to crowd-source all your home repair needs. Need a fence repaired? Cabinets installed? Leaky pipe mended? Post the job on Mr.Fix-It. Then, independent handypeople, carpenters, plumbers, and more are able to view and claim jobs. It's like ride-sharing, but for home repairs!</p>
+  </div>
+  <div class="col-md-4">
+    <%= image_tag("black-image.jpeg", :id => "image") %>
+  </div>
 </div>
 
-<div class="image">
-  <%= image_tag("plumber-image.jpeg") %>
+  <div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4 side_image">
+      <%= image_tag("plumber-image.jpeg", :id => "image") %>
+    </div>
+    <div class="col-md-4">
+    </div>
+  </div>
+
 </div>
+<hr>

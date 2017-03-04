@@ -1,7 +1,17 @@
 class WorkersController < ApplicationController
+
+  def index
+    @incomplete = Job.where(complete: false)
+    @completed = Job.where(complete: true)
+    @active = Job.where(status: true)
+  end
+
   def show
     @worker = current_worker
-    render :show
+    respond_to do |format|
+      format.html {render :show}
+      format.js
+    end
   end
 
   def new
