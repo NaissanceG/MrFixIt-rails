@@ -1,4 +1,12 @@
-$('#report').hide()
-<%= if @job.complete? %>
-$('#complete').appendTo('#finished');
-<% end  %>
+$('#work-report_<%=@job.id%>').hide();
+<% if report === 'complete'  %>
+    $('#finished').appendTo('#report_<%=@job.id%>');
+    <% @job.completed = true %>
+<% elsif report === 'status'  %>
+    $('#working').appendTo('#report_<%=@job.id%>');
+    <% @job.status = true %>
+<% elsif report === 'cancel'  %>
+    <% @job.pending = false %>
+<% else %>
+    <% @job.pending = false %>
+<% end %>

@@ -1,18 +1,17 @@
 class WorkersController < ApplicationController
 
-  def index
-    @incomplete = Job.where(complete: false)
-    @completed = Job.where(complete: true)
-    @active = Job.where(status: true)
-  end
-
   def show
+    @jobs = Job.all
+    @job = Job.find(params[:id])
     @worker = current_worker
+    @complete_jobs = Job.where(completed: true)
+    @active_jobs = Job.where(status: true)
     respond_to do |format|
       format.html {render :show}
       format.js
     end
   end
+
 
   def new
     # current_worker refers to a worker account currently logged in. current_user refers to a user account currently logged in.

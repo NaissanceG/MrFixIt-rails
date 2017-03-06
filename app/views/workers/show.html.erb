@@ -3,23 +3,31 @@
 <div class="row">
   <div class="col-md-6">
     <h1>Pending Jobs</h1>
-    <ul>
+    <ul >
       <% current_worker.jobs.each do |job| %>
-      <li id="report"><%= link_to job.title, job_path(job), remote: true %>
-        <%= check_box_tag 'complete', false %><%= label :complete, 'Done?'%>
-        <%= check_box_tag 'active', false %><%= label :active, 'Status?' %>
-        <%= check_box_tag 'cancel', false  %><%= label :cancel, 'Sorry, Nevermind?'%></li><br>
+      <li id="work-report_<%=job.id%> testing"><%= link_to job.title, job_path(job), remote: true, id:"report_#{job.id}" %>
+        <%= check_box_tag 'complete', 'complete', false, act:'/workers/'+(job.id).to_s, remote: true %>
+        <%= label :complete, 'complete'%>
+        <%= check_box_tag 'status', 'status', false, act:'/workers/'+(job.id).to_s, remote: true %>
+        <%= label :active, 'active' %>
+        <%= check_box_tag 'cancel', 'cancel', false, act:'/workers/'+(job.id).to_s, remote: true %>
+        <%= label :cancel, 'cancel'%></li><br>
       <% end %>
     </ul>
   </div>
 
   <div class="col-md-3">
     <h1>Active</h1>
-    <ul class="working"></ul>
+    <ul >
+      <li id="working"></li>
+    </ul>
   </div>
 
   <div class="col-md-3">
     <h1>Completed</h1>
-    <ul id="finished"></ul>
+    <ul >
+      <li id="finished"></li>
+    </ul>
   </div>
+
 </div>

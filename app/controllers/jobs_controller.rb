@@ -4,6 +4,9 @@ class JobsController < ApplicationController
     @jobs = Job.all
     @available_jobs = Job.where(pending: false)
     @taken_jobs = Job.where(pending: true)
+    @complete_jobs = Job.where(completed: true)
+    @incomplete = Job.where(completed: false)
+    @active_jobs = Job.where(status: true)
   end
 
   def new
@@ -17,7 +20,7 @@ class JobsController < ApplicationController
 
   def create
     @job = Job.new(job_params)
-    if @job.save(pending: false)
+    if @job.save(pending: false, completed: false, status: false )
       redirect_to jobs_path
     else
       render :new
@@ -28,7 +31,7 @@ class JobsController < ApplicationController
   def update
     @job = Job.find(params[:id])
     if current_worker
-      if @job.update(pending: true, worker_id: current_worker.id)
+      if @job.update(pending: true, completed: false, status: false, worker_id: current_worker.id)
         respond_to do |format|
           format.html {redirect_to worker_path(current_worker)}
           format.js
